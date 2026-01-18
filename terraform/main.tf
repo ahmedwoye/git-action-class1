@@ -19,13 +19,6 @@ provider "aws" {
 # Web Node Security Group
 # -------------------------
 
-resource "aws_security_group" "web_sg" {
-
-  name        = "web-sg"
-  description = "Allow SSH and Port 80  inbound, all outbound"
-
-}
-
 
 
 
