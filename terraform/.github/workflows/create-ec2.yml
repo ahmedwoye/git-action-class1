@@ -1,0 +1,30 @@
+name: Terraform EC2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+# // Just like a stage in Jenkins
+jobs: 
+ terraform:
+    name: 'Terraform Deployment'
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v4  #like you are importing library into your code
+
+      - name: Setup Artifact
+        run: ls -lstra
+
+        
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./terraform
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: ./terraform
