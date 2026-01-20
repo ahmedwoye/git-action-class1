@@ -54,3 +54,5 @@ jobs:
       - name: Terraform Apply
         working-directory: terraform
         run: terraform apply -auto-approve
+          -var="key_pair_name=October2025" \
+          -var="ami_id=ami-03e091ef64f3907f8"
