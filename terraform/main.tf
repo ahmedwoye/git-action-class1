@@ -192,7 +192,3 @@ resource "aws_instance" "Python" {
 
 
 
-variable "key_pair_name" {
-  description = "Name of the existing AWS EC2 key pair to use for SSH access"
-  type        = string
-}
