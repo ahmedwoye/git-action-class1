@@ -1,1 +1,3 @@
 Create a 3 VMs using Terraform and Git-Action as the CICD mechanism. Node 1: Java Node Node 2: Nginx Node Node 3: Ansible Server Ensure your Terraform code leverages S3 bucket to manage the Terraform State-file
+
+![screenshot of app](image1.png)
