@@ -22,17 +22,6 @@ variable "public_subnet2_cidr" {
   default     = "10.0.2.0/24"
 }
 
-variable "private_subnet1_cidr" {
-  description = "CIDR block for private subnet 1"
-  type        = string
-  default     = "10.0.3.0/24"
-}
-
-variable "private_subnet2_cidr" {
-  description = "CIDR block for private subnet 2"
-  type        = string
-  default     = "10.0.4.0/24"
-}
 
 variable "ami_id" {
   description = "AMI ID to use for EC2 instances (no default - please set for your region)"
