@@ -23,10 +23,6 @@ variable "public_subnet2_cidr" {
 }
 
 
-variable "ami_id" {
-  description = "AMI ID to use for EC2 instances (no default - please set for your region)"
-  type        = string
-}
 
 variable "instance_type" {
   description = "EC2 instance type"
