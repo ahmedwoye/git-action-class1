@@ -22,14 +22,50 @@ provider "aws" {
 
 
 
-resource "aws_instance" "web_node" {
+resource "aws_instance" " Nginx" {
   ami           = "ami-09c54d172e7aa3d9a"
   instance_type = "t3.micro"
   subnet_id     = "subnet-0828482fafcb40dc8"
-  #vpc_security_group_ids = ["sg-0524aa2c6d74451fd"]
-  key_name = "October2025"
+  key_name      = "October2025"
 
   tags = {
-    Name = "web_node"
+    Name = " Nginx_node"
+  }
+}
+
+# -------------------------
+# Java Node Security Group
+# -------------------------
+
+
+
+
+resource "aws_instance" "Java" {
+  ami           = "ami-09c54d172e7aa3d9a"
+  instance_type = "t3.micro"
+  subnet_id     = "subnet-0828482fafcb40dc8"
+  key_name      = "October2025"
+
+  tags = {
+    Name = "Java_node"
+  }
+}
+
+
+# -------------------------
+# Web Node Security Group
+# -------------------------
+
+
+
+
+resource "aws_instance" "Python" {
+  ami           = "ami-09c54d172e7aa3d9a"
+  instance_type = "t3.micro"
+  subnet_id     = "subnet-0828482fafcb40dc8"
+  key_name      = "October2025"
+
+  tags = {
+    Name = "Python_node"
   }
 }

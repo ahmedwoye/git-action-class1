@@ -6,53 +6,51 @@ on:
     branches:
       - main
 
-# // Just like a stage in Jenkins
 jobs: 
- terraform:
+  terraform:
     name: 'Terraform Deployment'
     runs-on: ubuntu-latest
     env:
       TF_IN_AUTOMATION: true
       TF_INPUT: false
 
-
     steps:
       - name: Checkout 
-        uses: actions/checkout@v4  #like you are importing library into your code
+        uses: actions/checkout@v4
 
       - name: Setup Artifact
         run: ls -lstra
 
-      - name: Congfifure AWS Credentials
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
 
-      - name: Prep Terraform Binaries
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.7.5
 
-      - name: Terraform Init
+      - name: Terraform Init (S3 Backend)
         working-directory: terraform
-        run: terraform init 
+        run: |
+          terraform init \
+            -backend-config="bucket=my-terraform-state-bucket" \
+            -backend-config="key=ec2/terraform.tfstate" \
+            -backend-config="region=eu-west-1" \
+            -backend-config="encrypt=true"
+            # -backend-config="dynamodb_table=terraform-locks"  # optional
 
       - name: Terraform Validate
         working-directory: terraform
         run: terraform validate
 
-      - name: Terraform plan
+      - name: Terraform Plan
         working-directory: terraform
         run: terraform plan
 
-        
-      - name: Terraform apply
+      - name: Terraform Apply
         working-directory: terraform
         run: terraform apply -auto-approve
-
-
- 
-
-      
