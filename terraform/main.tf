@@ -129,6 +129,14 @@ resource "aws_security_group" "public_web" {
 resource "aws_security_group" "public_app" {
   vpc_id = aws_vpc.this.id
 
+ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+
   ingress {
     from_port   = 8000
     to_port     = 8000
@@ -177,7 +185,7 @@ resource "aws_instance" "Java" {
 
 }
 
-resource "aws_instance" "Python" {
+resource "aws_instance" "Ansible" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.public_2.id
@@ -185,7 +193,7 @@ resource "aws_instance" "Python" {
   key_name               = var.key_pair_name
 
   tags = {
-    Name = "Python_Node"
+    Name = "Ansible_Node"
   }
 
 }
